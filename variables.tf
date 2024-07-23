@@ -313,6 +313,30 @@ variable "publicly_accessible" {
   description = "Control if instances in cluster are publicly accessible"
 }
 
+variable "restore_pit_restore_to_time" {
+  type        = string
+  default     = null
+  description = "Date and time in UTC format to restore the database cluster to. Conflicts with use_latest_restorable_time"
+}
+
+variable "restore_pit_restore_type" {
+  type        = string
+  default     = null
+  description = "Type of restore to be performed. Valid options are full-copy (default) and copy-on-write"
+}
+
+variable "restore_pit_cluster_identifier" {
+  type        = string
+  default     = null
+  description = "Identifier of the source database cluster from which to restore. When restoring from a cluster in another AWS account, the identifier is the ARN of that cluster."
+}
+
+variable "restore_pit_use_latest_restorable_time" {
+  type        = string
+  default     = true
+  description = "Set to true to restore the database cluster to the latest restorable backup time. Defaults to false. Conflicts with restore_to_time"
+}
+
 variable "security_group_ingress_rules" {
   type = list(object({
     cidr_ipv4                    = optional(string)
